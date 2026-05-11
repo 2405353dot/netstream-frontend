@@ -1,0 +1,225 @@
+.netflix-hover-wrapper {
+  position: relative !important;
+  width: 240px !important;
+  min-width: 240px !important;
+  height: 135px !important;
+  flex: 0 0 240px !important;
+  cursor: pointer !important;
+  overflow: visible !important;
+}
+
+.normal-card {
+  width: 240px !important;
+  height: 135px !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  background: #111 !important;
+}
+
+.normal-card-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.expanded-hover-card {
+  position: absolute !important;
+  top: -35px !important;
+  left: 0 !important;
+
+  width: 300px !important;
+  max-width: 300px !important;
+
+  background: #181818 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+
+  z-index: 999999 !important;
+
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.9) !important;
+  animation: popup 0.2s ease !important;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hover-media {
+  width: 300px !important;
+  height: 165px !important;
+  background: black !important;
+}
+
+.hover-video,
+.hover-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.hover-content {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 12px !important;
+  background: #181818 !important;
+}
+
+.hover-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 10px !important;
+}
+
+.main-play-btn {
+  background: white !important;
+  color: black !important;
+  border: none !important;
+  padding: 7px 15px !important;
+  border-radius: 30px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+}
+
+.circle-btn {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  border: 1px solid #777 !important;
+  background: #2a2a2a !important;
+  color: white !important;
+  cursor: pointer !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.right-btn {
+  margin-left: auto !important;
+}
+
+.hover-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  flex-wrap: wrap !important;
+  color: #ccc !important;
+  font-size: 12px !important;
+  margin-bottom: 8px !important;
+}
+
+.match {
+  color: #46d369 !important;
+  font-weight: 800 !important;
+}
+
+.age,
+.quality {
+  border: 1px solid #777 !important;
+  padding: 1px 5px !important;
+}
+
+.hover-description {
+  color: #ddd !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  max-height: 35px !important;
+  overflow: hidden !important;
+}
+
+.hover-tags {
+  margin-top: 8px !important;
+  display: flex !important;
+  gap: 7px !important;
+  color: white !important;
+  font-size: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+.top10-mini-badge,
+.top10-large-badge {
+  position: absolute !important;
+  top: 8px !important;
+  left: 8px !important;
+  background: #e50914 !important;
+  color: white !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  z-index: 10 !important;
+}
+
+.mini-progress-bar {
+  position: absolute !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 4px !important;
+  background: #444 !important;
+}
+
+.mini-progress-bar span,
+.hover-progress-bar span {
+  display: block !important;
+  height: 100% !important;
+  background: #e50914 !important;
+}
+
+/* MOST IMPORTANT FIX */
+.row-posters,
+.netflix-row,
+.movie-row,
+.video-row,
+.home-row,
+.continue-row,
+.top10-row,
+.continue-watching-row,
+.home-section {
+  overflow: visible !important;
+}
+
+.row-posters {
+  display: flex !important;
+  gap: 16px !important;
+  padding-left: 36px !important;
+  padding-right: 120px !important;
+  padding-top: 60px !important;
+  padding-bottom: 190px !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+@media (max-width: 768px) {
+  .netflix-hover-wrapper {
+    width: 190px !important;
+    min-width: 190px !important;
+    height: 110px !important;
+  }
+
+  .normal-card {
+    width: 190px !important;
+    height: 110px !important;
+  }
+
+  .expanded-hover-card {
+    width: 260px !important;
+    max-width: 260px !important;
+  }
+
+  .hover-media {
+    width: 260px !important;
+    height: 145px !important;
+  }
+} 

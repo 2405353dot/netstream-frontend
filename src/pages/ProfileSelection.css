@@ -1,0 +1,346 @@
+.profile-page {
+  min-height: 100vh;
+  background: #141414;
+  color: white;
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-page h1 {
+  font-size: 58px;
+  font-weight: 400;
+  margin-bottom: 55px;
+}
+
+.profiles-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 28px;
+}
+
+.profile-card {
+  text-align: center;
+  cursor: pointer;
+}
+
+.profile-avatar-box {
+  width: 145px;
+  height: 145px;
+
+  border-radius: 6px;
+  overflow: hidden;
+
+  border: 4px solid transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.25s ease;
+
+  box-shadow: none !important;
+}
+
+.profile-card:hover .profile-avatar-box {
+  border-color: white;
+  transform: scale(1.05);
+}
+
+.profile-card p {
+  margin-top: 14px;
+  font-size: 20px;
+  color: #808080;
+
+  transition: 0.25s ease;
+}
+
+.profile-card:hover p {
+  color: white;
+}
+
+/* ================= BLUE PROFILE ================= */
+
+.blue {
+  background: linear-gradient(145deg, #0077ff, #5db3ff);
+  background-size: 100% 100%;
+}
+
+/* ================= GREEN PROFILE ================= */
+
+.green {
+  background: linear-gradient(145deg, #16b86a, #65e0a3);
+  background-size: 100% 100%;
+}
+
+/* ================= FACE ================= */
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.face span {
+  position: absolute;
+  top: 48px;
+
+  width: 16px;
+  height: 16px;
+
+  background: white;
+  border-radius: 50%;
+}
+
+.face span:first-child {
+  left: 34px;
+}
+
+.face span:nth-child(2) {
+  right: 34px;
+}
+
+.face div {
+  position: absolute;
+  left: 50%;
+  top: 78px;
+
+  width: 58px;
+  height: 28px;
+
+  border-bottom: 7px solid white;
+  border-radius: 0 0 80px 80px;
+
+  transform: translateX(-50%);
+}
+
+/* ================= KIDS ================= */
+
+.kids {
+  background: linear-gradient(
+    90deg,
+    #6a2fb8 0%,
+    #ffb13b 25%,
+    #f04ca8 50%,
+    #7c73ff 75%,
+    #0077ff 100%
+  );
+}
+
+.kids h2 {
+  color: #e50914;
+  font-size: 42px;
+  font-weight: 900;
+
+  background: white;
+
+  padding: 0 8px;
+
+  border-radius: 12px;
+
+  text-shadow: none;
+}
+
+/* ================= ADD PROFILE ================= */
+
+.add {
+  background: transparent;
+  border: none;
+}
+
+.plus {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  background: #808080;
+  color: #141414;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 90px;
+  font-weight: 300;
+  line-height: 1;
+
+  transition: 0.25s ease;
+}
+
+.profile-card:hover .plus {
+  background: white;
+}
+
+/* ================= BUTTON ================= */
+
+.manage-btn {
+  margin-top: 70px;
+
+  background: transparent;
+  color: #808080;
+
+  border: 1px solid #808080;
+
+  padding: 12px 38px;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.manage-btn:hover {
+  color: white;
+  border-color: white;
+}
+
+/* ================= PROFILE LOADING SCREEN ================= */
+
+.profile-loading-page {
+  min-height: 100vh;
+  background: #141414;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.netflix-loader {
+  position: relative;
+
+  width: 190px;
+  height: 190px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-ring {
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  border: 7px solid transparent;
+  border-left-color: #e50914;
+  border-top-color: #e50914;
+
+  animation: loaderSpin 1s linear infinite;
+}
+
+@keyframes loaderSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-avatar {
+  width: 80px;
+  height: 80px;
+
+  border-radius: 4px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 2;
+}
+
+.loading-face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.loading-face span {
+  position: absolute;
+  top: 25px;
+
+  width: 8px;
+  height: 8px;
+
+  background: white;
+  border-radius: 50%;
+}
+
+.loading-face span:first-child {
+  left: 22px;
+}
+
+.loading-face span:nth-child(2) {
+  right: 22px;
+}
+
+.loading-face div {
+  position: absolute;
+  left: 50%;
+  top: 43px;
+
+  width: 36px;
+  height: 18px;
+
+  border-bottom: 4px solid white;
+  border-radius: 0 0 40px 40px;
+
+  transform: translateX(-50%);
+}
+
+.loading-avatar.kids h2 {
+  font-size: 24px;
+  color: #e50914;
+  background: white;
+  padding: 0 5px;
+  border-radius: 8px;
+}
+
+.loading-plus {
+  font-size: 55px;
+  color: #141414;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .profile-page h1 {
+    font-size: 38px;
+  }
+
+  .profiles-grid {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .profile-avatar-box {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-card p {
+    font-size: 18px;
+  }
+
+  .kids h2 {
+    font-size: 32px;
+  }
+
+  .plus {
+    width: 90px;
+    height: 90px;
+    font-size: 72px;
+  }
+} 

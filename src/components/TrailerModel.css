@@ -1,0 +1,147 @@
+.trailer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  z-index: 10000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trailer-modal {
+  width: 850px;
+  max-width: 92%;
+  background: #181818;
+  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9);
+
+  animation: modalPop 0.25s ease;
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.88);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.trailer-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+
+  background: #181818;
+  color: white;
+  border: none;
+
+  z-index: 3;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.trailer-video-box {
+  width: 100%;
+  height: 450px;
+  background: black;
+}
+
+.trailer-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trailer-content {
+  padding: 28px;
+}
+
+.trailer-content h1 {
+  font-size: 38px;
+  margin-bottom: 18px;
+}
+
+.trailer-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.modal-play {
+  background: white;
+  color: black;
+  border: none;
+
+  padding: 11px 28px;
+  border-radius: 5px;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  cursor: pointer;
+}
+
+.modal-add {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
+  background: #2a2a2a;
+  color: white;
+  border: 1px solid #777;
+
+  cursor: pointer;
+}
+
+.trailer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  color: #cfcfcf;
+  margin-bottom: 16px;
+}
+
+.match {
+  color: #46d369;
+  font-weight: 800;
+}
+
+.trailer-content p {
+  color: #dddddd;
+  line-height: 1.55;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .trailer-video-box {
+    height: 260px;
+  }
+
+  .trailer-content h1 {
+    font-size: 28px;
+  }
+}

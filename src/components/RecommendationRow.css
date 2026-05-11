@@ -1,0 +1,70 @@
+.recommendation-row {
+  padding: 0 35px;
+  margin: 40px 0 90px;
+}
+
+.recommendation-row h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.recommendation-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+}
+
+.recommendation-list::-webkit-scrollbar {
+  display: none;
+}
+
+.recommendation-card {
+  min-width: 360px;
+  height: 210px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  background: #111;
+}
+
+.recommendation-card:hover {
+  transform: scale(1.06);
+  z-index: 10;
+}
+
+.recommendation-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recommendation-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.95)
+  );
+}
+
+.recommendation-overlay h3 {
+  color: white;
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.recommendation-overlay p {
+  color: #cfcfcf;
+  font-size: 14px;
+  margin-top: 5px;
+} 

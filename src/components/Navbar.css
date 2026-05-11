@@ -1,0 +1,90 @@
+.navbar {
+  height: 70px;
+  width: 100%;
+  padding: 0 45px;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0)
+  );
+
+  transition: background 0.35s ease;
+}
+
+.navbar-black {
+  background: #000;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navbar-logo {
+  color: #e50914;
+  font-size: 30px;
+  font-weight: 900;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.navbar-left a {
+  color: #e5e5e5;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.navbar-left a:hover {
+  color: #fff;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav-icon {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.profile-avatar {
+  width: 34px;
+  height: 34px;
+  background: #e50914;
+  color: white;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 18px;
+  }
+
+  .navbar-left a {
+    display: none;
+  }
+
+  .navbar-logo {
+    font-size: 24px;
+  }
+}

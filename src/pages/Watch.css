@@ -1,0 +1,538 @@
+.watch-page {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.watch-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+/* LOADING */
+
+.watch-loading {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.netflix-loader {
+  color: #e50914;
+  font-size: 95px;
+  font-weight: 900;
+  animation: netflixPulse 1s infinite alternate;
+}
+
+@keyframes netflixPulse {
+  from {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* BUFFER LOADER */
+
+.buffer-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.netflix-spinner {
+  width: 62px;
+  height: 62px;
+  border: 5px solid rgba(255, 255, 255, 0.22);
+  border-top-color: #e50914;
+  border-radius: 50%;
+  animation: spinLoader 0.8s linear infinite;
+}
+
+@keyframes spinLoader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* MODERN TOP BUTTONS */
+
+.modern-back-btn {
+  position: absolute;
+  top: 22px;
+  left: 28px;
+  z-index: 40;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 38px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.modern-back-btn:hover {
+  transform: scale(1.15);
+}
+
+.modern-mini-btn {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  z-index: 40;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 36px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.modern-mini-btn:hover {
+  transform: scale(1.15);
+}
+
+/* MODERN BOTTOM CONTROLS */
+
+.modern-bottom-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 35;
+  padding: 90px 36px 28px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98),
+    rgba(0, 0, 0, 0.65),
+    transparent
+  );
+}
+
+.modern-progress-bar {
+  width: 100%;
+  height: 5px;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  cursor: pointer;
+  accent-color: #e50914;
+}
+
+.modern-progress-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  background: #e50914;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modern-progress-bar::-moz-range-thumb {
+  width: 17px;
+  height: 17px;
+  background: #e50914;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modern-time-row {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 15px;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.modern-controls-row {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+}
+
+.modern-controls-left,
+.modern-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.modern-controls-right {
+  justify-content: flex-end;
+}
+
+.modern-icon-btn,
+.modern-skip-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.modern-icon-btn {
+  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modern-skip-btn {
+  font-size: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modern-skip-btn span {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 900;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modern-icon-btn:hover,
+.modern-skip-btn:hover {
+  transform: scale(1.15);
+}
+
+.modern-video-title {
+  text-align: center;
+  font-size: 18px;
+  white-space: nowrap;
+  color: white;
+}
+
+.modern-video-title strong {
+  margin-right: 8px;
+  font-weight: 900;
+}
+
+.modern-video-title span {
+  color: #d0d0d0;
+  font-weight: 600;
+}
+
+/* VOLUME */
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.volume-slider {
+  width: 0;
+  opacity: 0;
+  appearance: none;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  accent-color: #e50914;
+}
+
+.volume-control:hover .volume-slider {
+  width: 90px;
+  opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #e50914;
+  border-radius: 50%;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #e50914;
+  border: none;
+  border-radius: 50%;
+}
+
+/* SELECT */
+
+.modern-select {
+  background: rgba(20, 20, 20, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  font-weight: 700;
+  padding: 7px 9px;
+  max-width: 100px;
+}
+
+.modern-select:hover {
+  border-color: #e50914;
+}
+
+.modern-select option {
+  color: black;
+}
+
+.active-control {
+  color: #e50914;
+}
+
+/* SKIP INTRO */
+
+.skip-intro-btn {
+  position: absolute;
+  right: 45px;
+  bottom: 145px;
+  z-index: 45;
+  background: rgba(30, 30, 30, 0.95);
+  color: white;
+  border: 1px solid #777;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.skip-intro-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* EPISODE SIDEBAR */
+
+.episode-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 390px;
+  max-width: 90vw;
+  height: 100%;
+  background: rgba(12, 12, 12, 0.97);
+  z-index: 55;
+  padding: 25px;
+  overflow-y: auto;
+  box-shadow: -8px 0 35px rgba(0, 0, 0, 0.8);
+}
+
+.episode-sidebar h3 {
+  margin: 0 0 20px;
+  font-size: 24px;
+}
+
+.episode-card {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.episode-card:hover {
+  background: rgba(229, 9, 20, 0.35);
+}
+
+.episode-card img {
+  width: 115px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 5px;
+  background: #222;
+}
+
+.episode-card h4 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.episode-card p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: #bbb;
+  line-height: 1.35;
+}
+
+/* MINI PLAYER */
+
+.mini-player {
+  position: fixed;
+  width: 420px;
+  height: 240px;
+  right: 25px;
+  bottom: 25px;
+  z-index: 9999;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+}
+
+.mini-player .modern-bottom-controls {
+  padding: 45px 12px 12px;
+}
+
+.mini-player .modern-controls-row {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.mini-player .modern-video-title,
+.mini-player .modern-controls-right,
+.mini-player .modern-time-row {
+  display: none;
+}
+
+.mini-player .modern-controls-left {
+  gap: 12px;
+}
+
+.mini-player .modern-icon-btn {
+  font-size: 20px;
+}
+
+.mini-player .modern-skip-btn {
+  font-size: 20px;
+}
+
+.mini-player .modern-back-btn {
+  font-size: 22px;
+}
+
+.mini-player .modern-mini-btn {
+  font-size: 22px;
+}
+
+.mini-player .volume-slider {
+  width: 55px;
+  opacity: 1;
+}
+
+/* ERROR */
+
+.video-error {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(229, 9, 20, 0.95);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 6px;
+  z-index: 70;
+  font-weight: 600;
+}
+
+/* SUBTITLE */
+
+::cue {
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  font-size: 21px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .modern-back-btn {
+    top: 16px;
+    left: 16px;
+    font-size: 28px;
+  }
+
+  .modern-mini-btn {
+    top: 16px;
+    right: 16px;
+    font-size: 28px;
+  }
+
+  .modern-bottom-controls {
+    padding: 75px 16px 20px;
+  }
+
+  .modern-controls-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .modern-video-title {
+    order: -1;
+    text-align: left;
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  .modern-controls-left,
+  .modern-controls-right {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .modern-icon-btn {
+    font-size: 25px;
+  }
+
+  .modern-skip-btn {
+    font-size: 23px;
+  }
+
+  .modern-select {
+    font-size: 13px;
+    max-width: 85px;
+  }
+
+  .volume-slider {
+    width: 65px;
+    opacity: 1;
+  }
+
+  .skip-intro-btn {
+    right: 18px;
+    bottom: 120px;
+  }
+
+  .episode-sidebar {
+    width: 330px;
+  }
+
+  .mini-player {
+    width: 310px;
+    height: 180px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .netflix-spinner {
+    width: 46px;
+    height: 46px;
+  }
+}  
