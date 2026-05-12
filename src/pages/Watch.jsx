@@ -93,6 +93,7 @@ function Watch() {
   const fetchVideo = async () => {
     try {
       const res = await api.get(`/video/${id}`);
+      console.log("Fetched video:", res.data);
       setVideo(res.data);
     } catch (error) {
       console.log("Video fetch error:", error);
@@ -120,8 +121,25 @@ function Watch() {
     }
   };
 
+  const normalizeUrl = (url) => {
+    if (!url) return "";
+
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+
+    return `https://${url}`;
+  };
+
   const getVideoUrl = () => {
-    return video?.hlsUrl || video?.videoUrl || video?.video || video?.url || "";
+    const source =
+      video?.hlsUrl ||
+      video?.videoUrl ||
+      video?.video ||
+      video?.url ||
+      "";
+
+    return normalizeUrl(source);
   };
 
   const getPoster = () => {
@@ -132,9 +150,18 @@ function Watch() {
     const player = videoRef.current;
     const source = getVideoUrl();
 
-    if (!player || !source) return;
+    console.log("Final playback source:", source);
+
+    if (!player || !source) {
+      setVideoError("No playable video URL found.");
+      return;
+    }
 
     destroyHls();
+
+    player.pause();
+    player.removeAttribute("src");
+    player.load();
 
     setBuffering(true);
     setVideoError("");
@@ -162,6 +189,8 @@ function Watch() {
       hls.attachMedia(player);
 
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        console.log("HLS manifest loaded");
+
         const levels = hls.levels
           .map((level, index) => ({
             index,
@@ -173,15 +202,27 @@ function Watch() {
 
         setQualities(levels);
 
-        if (savedProgress > 0) {
+        if (
+          savedProgress > 0 &&
+          player.duration &&
+          savedProgress < player.duration
+        ) {
           player.currentTime = savedProgress;
         }
 
         applySubtitleMode();
 
-        player.play().catch(() => {
-          setPlaying(false);
-        });
+        player
+          .play()
+          .then(() => {
+            setPlaying(true);
+            setBuffering(false);
+          })
+          .catch((err) => {
+            console.log("Autoplay blocked:", err);
+            setPlaying(false);
+            setBuffering(false);
+          });
       });
 
       hls.on(Hls.Events.LEVEL_SWITCHED, (_, data) => {
@@ -198,19 +239,46 @@ function Watch() {
         if (!data.fatal) return;
 
         if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+          console.log("Trying to recover network error...");
           hls.startLoad();
         } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+          console.log("Trying to recover media error...");
           hls.recoverMediaError();
         } else {
           setVideoError("This video could not be played.");
-          hls.destroy();
+          setBuffering(false);
+          destroyHls();
         }
       });
+    } else if (player.canPlayType("application/vnd.apple.mpegurl")) {
+      player.src = source;
+
+      player.addEventListener(
+        "loadedmetadata",
+        () => {
+          if (
+            savedProgress > 0 &&
+            player.duration &&
+            savedProgress < player.duration
+          ) {
+            player.currentTime = savedProgress;
+          }
+
+          player.play().catch(() => {
+            setPlaying(false);
+          });
+        },
+        { once: true }
+      );
     } else {
       player.src = source;
 
       player.onloadedmetadata = () => {
-        if (savedProgress > 0 && savedProgress < player.duration) {
+        if (
+          savedProgress > 0 &&
+          player.duration &&
+          savedProgress < player.duration
+        ) {
           player.currentTime = savedProgress;
         }
 
@@ -515,7 +583,7 @@ function Watch() {
         poster={getPoster()}
         autoPlay
         playsInline
-        preload="metadata"
+        preload="auto"
         className="watch-video"
         onLoadedMetadata={handleLoadedMetadata}
         onTimeUpdate={handleTimeUpdate}
@@ -531,9 +599,11 @@ function Watch() {
         style={{
           filter: `brightness(${brightness}%)`,
         }}
-        onError={() =>
-          setVideoError("Video failed to load. Check MP4 or HLS URL.")
-        }
+        onError={(e) => {
+          console.log("Native video error:", e);
+          setVideoError("Video failed to load. Check HLS URL.");
+          setBuffering(false);
+        }}
       >
         {video?.subtitles?.map((sub, index) => (
           <track
@@ -591,7 +661,9 @@ function Watch() {
               </button>
 
               <button
-                onClick={() => (videoRef.current.currentTime -= 10)}
+                onClick={() => {
+                  if (videoRef.current) videoRef.current.currentTime -= 10;
+                }}
                 className="modern-skip-btn"
               >
                 <FaUndo />
@@ -599,7 +671,9 @@ function Watch() {
               </button>
 
               <button
-                onClick={() => (videoRef.current.currentTime += 10)}
+                onClick={() => {
+                  if (videoRef.current) videoRef.current.currentTime += 10;
+                }}
                 className="modern-skip-btn"
               >
                 <FaRedo />
